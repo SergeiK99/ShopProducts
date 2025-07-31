@@ -1,0 +1,7 @@
+{
+  "profiles": {
+    "ShopProducts": {
+      "commandName": "MsixPackage"
+    }
+  }
+}
