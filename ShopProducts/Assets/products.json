@@ -1,0 +1,14 @@
+[
+  {
+    "Id": "1",
+    "Name": "Ноутбук",
+    "Price": 45000.0,
+    "ImagePath": "Assets/images/mouse.png"
+  },
+  {
+    "Id": "2",
+    "Name": "Мышка",
+    "Price": 1200.0,
+    "ImagePath": "Assets/images/mouse.png"
+  }
+]
