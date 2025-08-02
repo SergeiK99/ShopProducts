@@ -18,10 +18,7 @@ namespace ShopProducts.ViewModels
 
         public StoreViewModel()
         {
-            // Добавляем тестовые данные для проверки привязки
-            Products.Add(new Product { Id = "test1", Name = "Тестовый продукт 1", Price = 100, ImagePath = "Assets/images/mouse.png" });
-            Products.Add(new Product { Id = "test2", Name = "Тестовый продукт 2", Price = 200, ImagePath = "Assets/images/mouse.png" });
-            System.Diagnostics.Debug.WriteLine("StoreViewModel created with test data");
+            System.Diagnostics.Debug.WriteLine("StoreViewModel created");
         }
 
         public async Task LoadProductsAsync()
@@ -42,13 +39,23 @@ namespace ShopProducts.ViewModels
 
                 if (products != null)
                 {
-                    Products.Clear();
-                    foreach (var product in products)
-                    {
-                        Products.Add(product);
-                        System.Diagnostics.Debug.WriteLine($"Added: {product.Name}");
-                    }
+                    // Создаем новую коллекцию
+                    var newProducts = new ObservableCollection<Product>(products);
+                    
+                    // Заменяем старую коллекцию
+                    Products = newProducts;
+                    
+                    // Уведомляем UI об изменении свойства
+                    OnPropertyChanged(nameof(Products));
+                    
                     System.Diagnostics.Debug.WriteLine($"Final count: {Products.Count}");
+                    
+                    // Принудительно обновляем UI
+                    await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(
+                        Windows.UI.Core.CoreDispatcherPriority.Normal, () =>
+                        {
+                            OnPropertyChanged(nameof(Products));
+                        });
                 }
             }
             catch (Exception ex)

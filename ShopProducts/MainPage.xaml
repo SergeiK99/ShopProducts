@@ -11,27 +11,17 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Padding="12">
-        <GridView ItemsSource="{Binding Products}"
-                  IsItemClickEnabled="False"
-                  SelectionMode="None">
-            <GridView.ItemTemplate>
-                <DataTemplate x:DataType="models:Product">
-                    <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="8" Padding="8" Margin="8">
-                        <StackPanel>
-                            <Image Source="{Binding ImageSourceUri}" Height="100" Stretch="UniformToFill" />
-                            <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="0,8,0,0" />
-                            <TextBlock Text="{Binding FormattedPrice}" Foreground="Green"/>
-                            <Button Content="Добавить в корзину" Margin="0,8,0,0" />
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid MaximumRowsOrColumns="4"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-        </GridView>
+        <TextBlock Text="Тестовый текст - если вы видите это, значит XAML работает" 
+                   Foreground="Red" 
+                   FontSize="20" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Top" 
+                   Margin="0,0,0,20"/>
+        
+        <ScrollViewer Margin="0,50,0,0">
+            <StackPanel x:Name="ProductsPanel">
+                <!-- Продукты будут добавляться сюда программно -->
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </Page>
